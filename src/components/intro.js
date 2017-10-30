@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 import { DivIntro, ButtonIntro } from './components-styled';
 
 const Intro = (props) => {
-  return(
+  return (
     <DivIntro>
-      <div style={{transform: 'translateY(40vh)'}}>
-        <ButtonIntro> Pro Member </ButtonIntro>
-        <ButtonIntro style={{marginLeft: '10px'}}> Normal Member </ButtonIntro>
+      <div style={{transform: 'translateY(40vh)'}} >
+        <ButtonIntro onClick={() => props.handleClick('Pro')}> Pro Member </ButtonIntro>
+        <ButtonIntro onClick={() => props.handleClick('Normal')} style={{marginLeft: '10px'}}> Normal Member </ButtonIntro>
       </div>
     </DivIntro>
   );
-}
+};
 
 export default Intro;

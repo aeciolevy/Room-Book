@@ -8,7 +8,7 @@ export const DivIntro = styled.div`
   width: 100vw;
   height: 100vh;
   text-align: center;
-`
+`;
 
 export const ButtonIntro = styled.button`
   background: transparent;
@@ -25,6 +25,11 @@ export const ButtonIntro = styled.button`
     color: white;
     font-weight: 600;
   }
-`
+`;
 
-
+export const cardStyle = {
+  boxShadow: '0 5px 5px 0 rgba(0,0,0,.25)',
+  backgroundPosition: '0px -194px',
+  width: '100%',
+  margin: '20px 0 0 0'
+}
