@@ -41,15 +41,16 @@ class Booking extends Component {
     })
   }
 
+  handleSubmit = (data) => {
+    console.log(data);
+  }
+
   handleDetails = (key) => {
-    console.log('key',key)
-   const collapse = {...this.state.collapse, [key]: !this.state.collapse[key]}
-   this.setState({collapse})
+    const collapse = {...this.state.collapse, [key]: !this.state.collapse[key]}
+    this.setState({collapse})
  }
 
   render(){
-
-
     return (
       <div className='container'>
         <img alt="logo" src={logo} style={brandStyle}/>
@@ -70,6 +71,7 @@ class Booking extends Component {
         />)}
         {this.state.modal ? <ModalRoom
           modal={this.state.modal}
+          onSubmit={this.handleSubmit}
           data={this.state.room}
           toggle={ () => this.setState({ modal: !this.state.modal})}
           /> :

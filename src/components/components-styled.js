@@ -11,6 +11,12 @@ export const DivIntro = styled.div`
   text-align: center;
 `;
 
+export const H4Section = styled.h4`
+  border-bottom: 1px solid #dce0e0;
+  font-weight: 500;
+  margin-bottom: 20px;
+`;
+
 export const ButtonIntro = styled.button`
   background: transparent;
   border: 3px solid ${redColor};

@@ -33,7 +33,7 @@ const Rooms = (props) => {
             })
             }
           </DivText>
-          <div className="d-flex flex-row flex-nowrap justify-content-around" >
+          <div className="d-flex flex-row flex-wrap justify-content-around" >
             {images.map(value => <img key={value} alt="room" src={`${URL}${value}`} style={imgStyle} className="rounded" /> )}
           </div>
         </Collapse>
