@@ -1,7 +1,6 @@
 import React from 'react';
 import FieldFormControl from './field-form-control';
-
-const required = value =>  (value ? undefined : 'Required');
+import { required } from '../utils/validation';
 
 const RoomForm = (props) => {
   const { Field } = props;

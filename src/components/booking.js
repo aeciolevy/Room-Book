@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import Rooms from './rooms';
+import { Alert } from 'reactstrap';
 import ModalRoom from './modal-room';
 import moment from 'moment';
+import { getLatestMessage } from 'redux-flash';
 import 'react-day-picker/lib/style.css';
 import { brandStyle } from './components-styled';
 import logo from '../imgs/Logo.png';
@@ -26,7 +29,6 @@ class Booking extends Component {
     this.setState({ collapse })
   }
 
-
   handleDayClick = (day) => {
     this.props.handleChange(day);
     this.setState({
@@ -47,9 +49,8 @@ class Booking extends Component {
     bookingData.date = moment('01/11/2017').unix();
     bookingData.time_start = moment('01/11/2017 7:15:00').unix();
     bookingData.time_end = moment('01/11/2017 7:30:00').unix();
-    console.log(bookingData);
-    console.log(data.passes)
     this.props.handleBooking({booking: bookingData, passes: data.passes});
+    this.setState({modal: !this.state.modal})
   }
 
   handleDetails = (key) => {
@@ -58,6 +59,7 @@ class Booking extends Component {
  }
 
   render(){
+    const { flash } = this.props;
     return (
       <div className='container'>
         <img alt="logo" src={logo} style={brandStyle}/>
@@ -68,6 +70,11 @@ class Booking extends Component {
             format={DAY_FORMAT}
             style={{textAlign: 'center'}}
           />
+        {flash ?
+          <Alert color={flash.isError ? 'danger' : 'success'} style={{ marginTop: '10px' }}>
+          {this.props.flash.message}
+          </Alert> : null
+        }
        </div>
         {this.props.rooms.map( value => <Rooms
           key={value.id}
@@ -88,4 +95,10 @@ class Booking extends Component {
   }
 };
 
-export default Booking;
+function mapStateToProps(state){
+  return {
+    flash: getLatestMessage(state)
+  }
+}
+
+export default connect(mapStateToProps, null)(Booking);

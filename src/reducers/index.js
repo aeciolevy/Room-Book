@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   user,
   rooms,
   form: formReducer,
-  flashMessage: flashReducer,
+  flash: flashReducer,
 });
 
 export default rootReducer;

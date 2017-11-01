@@ -3,14 +3,9 @@ import React from 'react';
 import { Field } from 'redux-form';
 import { H4Section } from './components-styled';
 import FieldFormControl from './field-form-control';
+import { required, email, phoneNumber } from '../utils/validation';
 
-const required = value =>  (value ? undefined : 'Required');
-const email = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
-  'Invalid email address' : undefined;
-const phoneNumber = value =>value && !/^([0-9]{9,15})$/i.test(value)?
-  'Invalid phone number, must be at list 9 digits' : undefined;
-
-const AtendeeForm = ({ fields, meta: { error, submitFailed } }) => {
+const AtendeeForm = ({ fields }) => {
 
   return (
     <div>

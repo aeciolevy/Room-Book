@@ -1,4 +1,6 @@
 import { post } from '../utils/fetch';
+import { flashMessage, flashErrorMessage } from 'redux-flash';
+import { translateMessage } from '../utils/help';
 import { GET_USER, GET_ROOMS, REQUEST } from './types';
 
 const URL = 'https://challenges.1aim.com/roombooking';
@@ -24,6 +26,11 @@ export function getRooms(date) {
 export function sendPass(data) {
   return async function (dispatch) {
     const response = await post(`${URL}/sendpass`, data);
-    console.log(response);
-  }
+    console.log(response)
+    const { code, text } = response.error;
+    if (response.success) {
+      dispatch(flashMessage('Booked and sent passes', { timeout: 3000 }));
+    }
+    dispatch(flashErrorMessage(translateMessage(code, text), { timeout: 4500 }));
+  };
 }
