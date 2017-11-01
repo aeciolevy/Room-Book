@@ -14,7 +14,7 @@ export async function get(url) {
 export async function post(url, data) {
   const response = await fetch(url, {
     method: 'POST',
-    headers: { 'content-Type': 'application/json' },
+    // headers: { 'content-Type': 'application/json' },
     body: JSON.stringify(data),
   });
   if(!response.ok) {

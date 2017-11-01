@@ -1,7 +1,6 @@
 /* eslint react/jsx-filename-extension: 0, react/no-multi-comp: 0, react/prop-types: 0 */
-import React, { Component } from 'react';
+import React from 'react';
 import { Field } from 'redux-form';
-import { Button } from 'reactstrap';
 import { H4Section } from './components-styled';
 import FieldFormControl from './field-form-control';
 
@@ -15,11 +14,14 @@ const AtendeeForm = ({ fields, meta: { error, submitFailed } }) => {
 
   return (
     <div>
-      <button className="btn btn-secondary" style={{marginBotton: '15px'}}
-      onClick={ () => fields.push({})}>
+      <button
+        className="btn btn-secondary"
+        style={{ marginBottom: '15px' }}
+        onClick={() => fields.push({})}
+      >
         Add Atendee
       </button>
-      {fields.map( (atendee, index) => (
+      {fields.map((atendee, index) => (
         <div key={index}>
           <button type="button" className="btn btn-danger"
             onClick={() => fields.remove(index)}

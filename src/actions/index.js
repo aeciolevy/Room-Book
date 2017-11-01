@@ -1,7 +1,7 @@
 import { post } from '../utils/fetch';
 import { GET_USER, GET_ROOMS, REQUEST } from './types';
 
-const URL = 'https://challenges.1aim.com/roombooking/';
+const URL = 'https://challenges.1aim.com/roombooking';
 
 export function getUserType(user) {
   return function (dispatch) {
