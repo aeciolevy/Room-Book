@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUserType, getRooms } from './actions/index';
+import { getUserType, getRooms, sendPass } from './actions/index';
 import Intro from './components/intro';
 import Booking from './components/booking';
 import moment from 'moment';
@@ -31,6 +31,7 @@ class App extends Component {
         {this.state.page === 1 ? <Intro handleClick={this.handleClickIntro} /> : null}
         {this.state.page === 2 ? <Booking user={this.props.user.type}
         rooms={this.props.rooms}
+        handleBooking={ booking => this.props.sendPass(booking)}
         handleChange={this.handleChange}/> : null}
       </div>
     );
@@ -41,4 +42,4 @@ function mapStateToProps({user, rooms}) {
   return {user, rooms};
 }
 
-export default connect(mapStateToProps, {getUserType, getRooms})(App);
+export default connect(mapStateToProps, {getUserType, getRooms, sendPass})(App);

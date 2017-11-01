@@ -6,6 +6,7 @@ import { H4Section } from './components-styled';
 import RoomForm from './room-form';
 import AtendeeForm from './atendee-form';
 import moment from 'moment';
+import { checkNumber } from '../utils/help';
 import Slider from './slider';
 
 const required = value => (value ? undefined : 'Required');
@@ -14,6 +15,8 @@ const ModalRoom = (props) => {
   const { handleSubmit, modal, toggle } = props;
   const { name } = props.data[0];
   const submit = (data) => {
+    data.room = name;
+    data.passes = checkNumber(data.passes);
     props.submit(data);
   };
   return (

@@ -20,3 +20,10 @@ export function getRooms(date) {
     dispatch({ type: GET_ROOMS, payload: changedResponse });
   };
 }
+
+export function sendPass(data) {
+  return async function (dispatch) {
+    const response = await post(`${URL}/sendpass`, data);
+    console.log(response);
+  }
+}

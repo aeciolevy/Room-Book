@@ -20,7 +20,7 @@ const RoomForm = (props) => {
       />
       <Field
         type="text"
-        name="Description"
+        name="description"
         sizeL={3}
         sizeI={9}
         offset={3}
