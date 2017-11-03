@@ -31,6 +31,7 @@ class App extends Component {
       <div>
         {this.state.page === 1 ? <Intro handleClick={this.handleClickIntro} /> : null}
         {this.state.page === 2 ? <Booking user={this.props.user.type}
+        handleLogo={ () => this.setState({page: 1})}
         rooms={this.props.rooms}
         handleBooking={ booking => this.props.sendPass(booking)}
         handleChange={this.handleChange}/> : null}

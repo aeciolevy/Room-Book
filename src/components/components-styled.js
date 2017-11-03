@@ -37,6 +37,7 @@ export const ButtonIntro = styled.button`
 export const brandStyle = {
   width: '100px',
   borderRadius: '10px',
+  cursor: 'pointer',
 }
 
 export const cardStyle = {

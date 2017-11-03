@@ -6,11 +6,12 @@ import { H4Section } from './components-styled';
 import RoomForm from './room-form';
 import AtendeeForm from './atendee-form';
 import { checkNumber } from '../utils/help';
-import Slider from './slider';
+import TimerInput from './timer-input';
+import moment from 'moment';
 
 const ModalRoom = (props) => {
   const { handleSubmit, modal, toggle } = props;
-  const { name } = props.data[0];
+  const { name, avail } = props.data[0];
   const submit = (data) => {
     data.room = name;
     data.passes ? checkNumber(data.passes) : data.passes = [];
@@ -23,6 +24,14 @@ const ModalRoom = (props) => {
       <ModalBody>
         <H4Section> Booking Info </H4Section>
         <form onSubmit={handleSubmit(submit)}>
+          <div className="d-flex flex-row">
+            <div className="col-sm-6">
+              <TimerInput Field={Field} avail={avail} name="time_start" label="Start Time"/>
+            </div>
+            <div className="col-sm-6">
+              <TimerInput Field={Field} avail= {avail} name="time_end" label="End Time"/>
+            </div>
+          </div>
           <RoomForm Field={Field} />
           <button type="submit" className="btn btn-info" style={{ float: 'right' }}> Book </button>
           <H4Section style={{clear: 'both'}}> Atendees </H4Section>

@@ -1,6 +1,6 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
-import { Col, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
+import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 
 const FieldFormControl = ({ placeholder, label, type, input, meta, sizeL, sizeI, offset }) => {
 

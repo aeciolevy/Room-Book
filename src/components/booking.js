@@ -54,11 +54,11 @@ class Booking extends Component {
   }
 
   handleSubmit = data => {
+    data.date = moment(data.time_start, DAY_FORMAT).unix();
+    data.time_start = moment(data.time_start).unix();
+    data.time_end = moment(data.time_end).unix();
     const bookingData = {};
     Object.keys(data).forEach(elem => elem !== 'passes' ? bookingData[elem] = data[elem] : null);
-    bookingData.date = moment('01/11/2017').unix();
-    bookingData.time_start = moment('01/11/2017 7:15:00').unix();
-    bookingData.time_end = moment('01/11/2017 7:30:00').unix();
     this.props.handleBooking({booking: bookingData, passes: data.passes});
     this.setState({modal: !this.state.modal})
   }
@@ -69,10 +69,12 @@ class Booking extends Component {
  }
 
   render(){
-    const { flash } = this.props;
+    const { flash, handleLogo } = this.props;
     return (
       <div className='container'>
-        <img alt="logo" src={logo} style={brandStyle}/>
+        <a onClick={() => handleLogo()} >
+          <img alt="logo" src={logo} style={brandStyle}/>
+        </a>
         <div style={{textAlign: 'center'}}>
           <DayPickerInput
             onDayChange={this.handleDayClick}
