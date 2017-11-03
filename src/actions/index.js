@@ -26,7 +26,6 @@ export function getRooms(date) {
 export function sendPass(data) {
   return async function (dispatch) {
     const response = await post(`${URL}/sendpass`, data);
-    console.log(response)
     if (response.success) {
       dispatch(flashMessage('Booked and sent passes', { timeout: 3000 }));
     } else {
