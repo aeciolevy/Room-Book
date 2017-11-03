@@ -14,7 +14,7 @@
 - Bootstrap
 - [ReactStrap](https://reactstrap.github.io/)
 - [RC Time Picker](http://react-component.github.io/time-picker/) 
-- [Phone] (https://github.com/aftership/phone)
+- [Phone](https://github.com/aftership/phone)
 
 ##Approach the problem
 
@@ -30,3 +30,4 @@
 - Validation for time to booking;
 - Update available times on rooms state;
 - Implement PRO time picker;
+- Fixing Available Book Time style to mobile;
