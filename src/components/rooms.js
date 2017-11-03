@@ -1,10 +1,11 @@
+/* eslint react/jsx-filename-extension: 0 react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
-import Slider from './slider';
+import SliderView from './slider-view';
 import { Collapse } from 'reactstrap';
 import { cardStyle, DivText, imgStyle } from './components-styled';
 
 const Rooms = (props) => {
-  const { collapse } = props;
+  const { collapse, available } = props;
   const { id, name, location, capacity, size, equipment, images } = props.data;
   const URL = `https://challenges.1aim.com/roombooking/`
 
@@ -12,6 +13,7 @@ const Rooms = (props) => {
     <div className="card" style={cardStyle}>
       <div className="card-body">
         <h4 className="card-title"> Room {name} </h4>
+        <SliderView available={available}/>
         <div className="d-flex flex-row justify-content-between">
           <DivText primary> <b> Location: </b> {location}  </DivText>
           <DivText primary> <b> Capacity: </b> {capacity} </DivText>

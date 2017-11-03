@@ -27,10 +27,11 @@ export function sendPass(data) {
   return async function (dispatch) {
     const response = await post(`${URL}/sendpass`, data);
     console.log(response)
-    const { code, text } = response.error;
     if (response.success) {
       dispatch(flashMessage('Booked and sent passes', { timeout: 3000 }));
+    } else {
+      const { code, text } = response.error;
+      dispatch(flashErrorMessage(translateMessage(code, text), { timeout: 4500 }));
     }
-    dispatch(flashErrorMessage(translateMessage(code, text), { timeout: 4500 }));
   };
 }

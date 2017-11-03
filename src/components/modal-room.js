@@ -21,7 +21,6 @@ const ModalRoom = (props) => {
     <Modal isOpen={modal} toggle={toggle} >
       <ModalHeader> Room {name} </ModalHeader>
       <ModalBody>
-        <Slider />
         <H4Section> Booking Info </H4Section>
         <form onSubmit={handleSubmit(submit)}>
           <RoomForm Field={Field} />

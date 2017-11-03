@@ -5,14 +5,15 @@ import Intro from './components/intro';
 import Booking from './components/booking';
 import moment from 'moment';
 import './style/App.css';
+import SliderView from './components/slider-view';
 
 class App extends Component {
   constructor(props){
     super(props);
-    this.state = { page: 2}
+    this.state = { page: 1}
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.getRooms({date: moment().unix()})
   }
 
@@ -33,6 +34,7 @@ class App extends Component {
         rooms={this.props.rooms}
         handleBooking={ booking => this.props.sendPass(booking)}
         handleChange={this.handleChange}/> : null}
+        {this.state.page === 3 ? <SliderView /> : null}
       </div>
     );
   }

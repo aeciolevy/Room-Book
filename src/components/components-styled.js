@@ -56,3 +56,23 @@ export const imgStyle = {
 export const DivText = styled.div`
   padding: ${props => props.primary ? '0 0 10px 0' : '15px 0 0 0'};
 `;
+
+export const DivTime = styled.div`
+  height: 20px;
+  background-color: #E31E2F;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  padding: 0;
+`;
+
+export const DivTimeChild = styled.div`
+  height: 20px;
+  background-color: #009547;
+  width: ${props => props.size};
+  margin-left: ${props => props.shift};
+`;
+
+export const DivTimeText = styled.div`
+  padding: 0;
+  transform: translateX(-12px);
+`;

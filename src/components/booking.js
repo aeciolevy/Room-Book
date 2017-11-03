@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
@@ -9,6 +10,7 @@ import { getLatestMessage } from 'redux-flash';
 import 'react-day-picker/lib/style.css';
 import { brandStyle } from './components-styled';
 import logo from '../imgs/Logo.png';
+import { completeObj, manipulate, timeArray } from '../utils/help';
 
 const DAY_FORMAT = 'DD/MM/YYYY';
 
@@ -17,16 +19,24 @@ class Booking extends Component {
     super(props);
     this.state = {
       selectedDay: moment().format(DAY_FORMAT),
-      collapse: {}
+      collapse: {},
+      available: {}
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    let collapse = {}
-    nextProps.rooms.forEach( value => {
-      collapse = { ...collapse, [value.id]: false}
+  componentDidMount() {
+    this.handleAvailable(this.props.rooms)
+  }
+
+  handleAvailable (rooms) {
+    let available = {};
+    rooms.forEach( elem => {
+      let timeToHandle = manipulate();
+      const availFormatted = timeArray(elem.avail);
+      completeObj(availFormatted, timeToHandle);
+      available = { ...available, [elem.id]: timeToHandle}
+      this.setState({ available })
     })
-    this.setState({ collapse })
   }
 
   handleDayClick = (day) => {
@@ -79,6 +89,7 @@ class Booking extends Component {
         {this.props.rooms.map( value => <Rooms
           key={value.id}
           data={value}
+          available={this.state.available[value.id]}
           collapse={this.state.collapse[value.id]}
           handleClick={ this.handleRoomClick.bind(this) }
           handleDetailsClick={this.handleDetails}
@@ -97,7 +108,8 @@ class Booking extends Component {
 
 function mapStateToProps(state){
   return {
-    flash: getLatestMessage(state)
+    flash: getLatestMessage(state),
+    rooms: state.rooms,
   }
 }
 
