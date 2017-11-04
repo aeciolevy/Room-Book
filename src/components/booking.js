@@ -5,6 +5,7 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 import Rooms from './rooms';
 import { Alert } from 'reactstrap';
 import ModalRoom from './modal-room';
+import Search from './search';
 import moment from 'moment';
 import { getLatestMessage } from 'redux-flash';
 import 'react-day-picker/lib/style.css';
@@ -19,8 +20,10 @@ class Booking extends Component {
     super(props);
     this.state = {
       selectedDay: moment().format(DAY_FORMAT),
+      filter: '',
       collapse: {},
-      available: {}
+      available: {},
+      keyFiltered: 'name'
     }
   }
 
@@ -37,6 +40,10 @@ class Booking extends Component {
       available = { ...available, [elem.id]: timeToHandle}
       this.setState({ available })
     })
+  }
+
+  addFilter = (e) => {
+    this.setState({filter: e.target.value});
   }
 
   handleDayClick = (day) => {
@@ -68,27 +75,31 @@ class Booking extends Component {
     this.setState({collapse})
  }
 
-  render(){
-    const { flash, handleLogo } = this.props;
+  render() {
+    const { flash, handleLogo, rooms } = this.props;
+    let roomsFiltered = rooms.filter(room => room[this.state.keyFiltered].match(new RegExp(this.state.filter, 'i')));
+
     return (
       <div className='container'>
         <a onClick={() => handleLogo()} >
           <img alt="logo" src={logo} style={brandStyle}/>
         </a>
-        <div style={{textAlign: 'center'}}>
+        <div className="d-flex flex-row justify-content-end" style={{textAlign: 'center'}}>
           <DayPickerInput
             onDayChange={this.handleDayClick}
             value={this.state.selectedDay}
             format={DAY_FORMAT}
-            style={{textAlign: 'center'}}
+            style={{textAlign: 'center', borderRadius: '0.25rem'}}
+
           />
+          <Search filter={this.addFilter} select={ value => this.setState({keyFiltered: value})}/>
         {flash ?
           <Alert color={flash.isError ? 'danger' : 'success'} style={{ marginTop: '10px' }}>
           {this.props.flash.message}
           </Alert> : null
         }
        </div>
-        {this.props.rooms.map( value => <Rooms
+        {roomsFiltered.map( value => <Rooms
           key={value.id}
           data={value}
           available={this.state.available[value.id]}
