@@ -7,7 +7,7 @@ import { cardStyle, DivText, imgStyle } from './components-styled';
 const Rooms = (props) => {
   const { collapse, available } = props;
   const { id, name, location, capacity, size, equipment, images } = props.data;
-  const URL = `https://challenges.1aim.com/roombooking/`
+  const URL = `https://challenges.1aim.com/roombooking/`;
 
   return (
     <div className="card" style={cardStyle}>

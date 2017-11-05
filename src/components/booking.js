@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
@@ -27,8 +26,8 @@ class Booking extends Component {
     }
   }
 
-  componentDidMount() {
-    this.handleAvailable(this.props.rooms)
+  componentWillReceiveProps(nextProps) {
+    this.handleAvailable(nextProps.rooms)
   }
 
   handleAvailable (rooms) {
@@ -84,7 +83,7 @@ class Booking extends Component {
         <a onClick={() => handleLogo()} >
           <img alt="logo" src={logo} style={brandStyle}/>
         </a>
-        <div className="d-flex flex-row justify-content-end" style={{textAlign: 'center'}}>
+        <div style={{textAlign: 'center'}}>
           <DayPickerInput
             onDayChange={this.handleDayClick}
             value={this.state.selectedDay}
@@ -92,13 +91,13 @@ class Booking extends Component {
             style={{textAlign: 'center', borderRadius: '0.25rem'}}
 
           />
-          <Search filter={this.addFilter} select={ value => this.setState({keyFiltered: value})}/>
-        {flash ?
-          <Alert color={flash.isError ? 'danger' : 'success'} style={{ marginTop: '10px' }}>
-          {this.props.flash.message}
-          </Alert> : null
-        }
-       </div>
+          {flash ?
+            <Alert color={flash.isError ? 'danger' : 'success'} style={{ marginTop: '10px' }}>
+            {this.props.flash.message}
+            </Alert> : null
+          }
+        </div>
+        <Search filter={this.addFilter} select={ value => this.setState({keyFiltered: value})}/>
         {roomsFiltered.map( value => <Rooms
           key={value.id}
           data={value}
