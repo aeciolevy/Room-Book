@@ -2,7 +2,7 @@
 import React from 'react';
 import SliderView from './slider-view';
 import { Collapse } from 'reactstrap';
-import { cardStyle, DivText, imgStyle } from './components-styled';
+import { cardStyle, DivText, imgStyle, buttonStyle } from './components-styled';
 
 const Rooms = (props) => {
   const { collapse, available } = props;
@@ -20,12 +20,22 @@ const Rooms = (props) => {
           <DivText primary> <b> Size: </b> {size} </DivText>
         </div>
         <div style={{ float: 'left' }}>
-          <button className="btn btn-outline-info" onClick={() => props.handleDetailsClick(id)} >
+          <button
+            className="btn btn-outline-info"
+            onClick={() => props.handleDetailsClick(id)}
+            style={buttonStyle}
+          >
             More details
           </button>
         </div>
         <div style={{ float: 'right' }}>
-          <button className="btn btn-outline-info" onClick={ () => { props.handleClick(id)} }> Book </button>
+          <button
+            className="btn btn-outline-info"
+            onClick={ () => { props.handleClick(id)} }
+            style={buttonStyle}
+          >
+          Book
+          </button>
         </div>
         <Collapse isOpen={collapse} style={{clear: 'both'}}>
           <DivText> <b> Equipments: </b>

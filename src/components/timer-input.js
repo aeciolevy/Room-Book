@@ -2,25 +2,8 @@ import React, { Component } from 'react';
 import TimerForm from './timer-form';
 import moment from 'moment';
 import { timeArray } from '../utils/help';
+import { startTime, required, greater } from '../utils/validation';
 import 'rc-time-picker/assets/index.css';
-
-const timer = (value) => {
-    // if (this.props.name === 'start-date') {
-    //   let flag = this.state.time.reduce( (acc, curr) => {
-    //     let time0 = moment(curr[0], 'HH:mm');
-    //     let time1 = moment(curr[1], 'HH:mm');
-    //     acc = moment(value).isSameOrAfter(time0)
-    //     && moment(value).isSameOrBefore(time1) || acc;
-    //     return acc;
-    //   }, false)
-    let flag = false
-      // console.log('value', moment(value))
-      // console.log(this.state.time[0][0], 'HH:mm')
-      // let flag = moment(value).isSameOrAfter(this.state.time[0][0], 'HH:mm')
-      // console.log(flag);
-      return flag ? 'invalid date' : undefined;
-    // }
-  }
 
 class TimerInput extends Component {
   constructor(props){
@@ -33,6 +16,20 @@ class TimerInput extends Component {
     this.setState({time})
   }
 
+  available = (value) => {
+    if (this.props.name === 'time_start') {
+      return startTime(value, this.state.time);
+    }
+    if (this.props.name === 'time_end') {
+      return startTime(value, this.state.time)
+    }
+  }
+
+  checkGreater = (value) => {
+    const { time_start, time_end} = this.props.times;
+    const { name } = this.props;
+    return greater(name, value, time_start, time_end)
+  }
 
   render() {
     const { Field, name, label, avail } = this.props;
@@ -40,7 +37,8 @@ class TimerInput extends Component {
       <Field
         name={name}
         label={label}
-        validate={timer}
+        format={null}
+        validate={[required, this.available, this.checkGreater]}
         component={TimerForm}
       />
     );

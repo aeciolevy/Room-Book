@@ -8,6 +8,10 @@ export const brandStyle = {
   cursor: 'pointer',
 }
 
+export const buttonStyle = {
+  cursor: 'pointer'
+}
+
 export const cardStyle = {
   boxShadow: '0 5px 5px 0 rgba(0,0,0,.25)',
   backgroundPosition: '0px -194px',

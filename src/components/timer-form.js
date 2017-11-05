@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import TimePicker from 'rc-time-picker';
 import moment from 'moment';
+import { FormFeedback } from 'reactstrap';
 import 'rc-time-picker/assets/index.css';
 
 class TimerForm extends Component {
@@ -9,6 +10,11 @@ class TimerForm extends Component {
     super(props);
     this.state = {
     };
+  }
+
+  handleChange = (value, input) => {
+    this.setState({ value })
+    input.onChange(value)
   }
 
   render() {
@@ -27,13 +33,14 @@ class TimerForm extends Component {
             showSecond={false}
             minuteStep={15}
             format="HH:mm"
-            onChange={ value => input.onChange(moment(value))}
+            value={this.state.value}
+            onChange={ (value) => this.handleChange(value, input) }
             disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 19, 20, 21, 22, 23]}
             hideDisabledOptions
             getPopupContainer={triggerNode => triggerNode.parentNode}
           />
         </div>
-        <p className="help-block" style={{marginBottom: 0}}> {meta.touched ? meta.error : ''}</p>
+        <FormFeedback style={{display: 'block'}}> {meta.touched ? meta.error : ''} </FormFeedback>
       </div>
     );
   }
