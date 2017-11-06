@@ -10,7 +10,7 @@ import SliderView from './components/slider-view';
 class App extends Component {
   constructor(props){
     super(props);
-    this.state = { page: 2}
+    this.state = { page: 1}
   }
 
   componentWillMount() {

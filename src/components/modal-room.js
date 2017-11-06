@@ -1,7 +1,7 @@
 /* eslint react/jsx-filename-extension: 0, react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import { connect } from 'react-redux';
-import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { formValueSelector, Field, FieldArray, reduxForm } from 'redux-form';
 import { H4Section } from './components-styled';
 import RoomForm from './room-form';
@@ -48,7 +48,7 @@ const ModalRoom = (props) => {
             </div>
           </div>
           <RoomForm Field={Field} />
-          <button type="submit" className="btn btn-info" style={{ float: 'right' }}> Book </button>
+          <Button type="submit" className="btn btn-info" style={{ float: 'right' }}> Book </Button>
           <H4Section style={{ clear: 'both' }}> Atendees </H4Section>
           <FieldArray name="passes" component={AtendeeForm} />
         </form>
