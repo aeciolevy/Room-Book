@@ -12,7 +12,7 @@ export const startTime = (value, time) => {
   const flag = time.reduce( (acc, curr) => {
     const time0 = moment(curr[0], 'HH:mm');
     const time1 = moment(curr[1], 'HH:mm');
-    acc = moment(value).isSameOrAfter(time0) && moment(value).isSameOrBefore(time1) || acc;
+    acc = moment(value).isBetween(time0, time1, 'hour', 'minute', []) || acc;
     return acc;
   }, false);
   return !flag ? '* Time not available' : '';
@@ -25,4 +25,4 @@ export const greater = (name, value, time_start, time_end) => {
   if (name === 'time_end') {
     return value < time_start ? '* End must be greater than Start' : '';
   }
-}
+};

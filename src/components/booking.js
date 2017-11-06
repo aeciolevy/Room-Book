@@ -26,7 +26,7 @@ class Booking extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.handleAvailable(this.props.rooms)
   }
 

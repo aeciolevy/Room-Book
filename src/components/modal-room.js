@@ -8,7 +8,6 @@ import RoomForm from './room-form';
 import AtendeeForm from './atendee-form';
 import { checkNumber } from '../utils/help';
 import TimerInput from './timer-input';
-import moment from 'moment';
 
 const selector = formValueSelector('roomForm');
 
