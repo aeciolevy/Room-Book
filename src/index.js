@@ -6,7 +6,7 @@ import thunkMiddleware from 'redux-thunk';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import './style/index.css';
-import 'font-awesome/css/font-awesome.css'
+import 'font-awesome/css/font-awesome.css';
 import App from './App';
 import reducers from './reducers';
 import registerServiceWorker from './registerServiceWorker';
